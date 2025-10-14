@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-464J8LZVZ4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-464J8LZVZ4');
+</script>
+
+<meta name="generator" content="jemdoc, see http://jemdoc.jaboc.net/" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" href="jemdoc.css" type="text/css" />
+<title>Neuron Pursuit</title>
+
+<!-- MathJax for LaTeX equations -->
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+
+<body>
+<table summary="Table for page layout." id="tlayout">
+<tr valign="top">
+
+<!-- Sidebar -->
+<td id="layout-menu">
+<div class="menu-category">Home</div>
+<div class="menu-item"><a href="index.html">About&nbsp;me</a></div>
+<div class="menu-item"><a href="neuron_pursuit.html" class="current">Neuron&nbsp;Pursuit</a></div>
+</td>
+
+<!-- Main content -->
+<td id="layout-content">
+<div id="toptitle">
+<h1>Neuron Pursuit</h1>
+</div>
+
+<p>
+Understanding the training dynamics of neural networks is crucial for explaining their remarkable generalization abilities. My research has focused on analyzing the dynamics of gradient flow resulting from minimizing the training loss in a supervised learning setup, particularly for homogeneous neural networks trained in the small initialization regime. Homogeneous neural networks are those whose outputs scale with the scaling of their weights, a class that includes feed-forward and convolutional ReLU networks but excludes Residual Networks and Transformers. The small initialization regime is important because it implicitly promotes feature learning and sparsity in the weights.
+</p>
+
+<p>
+In a series of works, we have studied the dynamics of gradient flow at various stages of training. Our results reveal key phenomena such as directional convergence and the emergence of sparsity structure among the weights. These findings ultimately led us to a greedy algorithm, which we call Neuron Pursuit (NP), for training deep neural networks.
+</p>
+
+<p>
+The NP algorithm begins with a neural network containing one neuron in every layer, and then trains it to minimize the training loss via gradient descent using specifically chosen initial weights. It then proceeds iteratively: at each iteration, a neuron is added to the network with specifically chosen incoming and outgoing weights, after which the training loss is minimized via gradient descent using this augmented network. The mechanism for adding the neuron and the choice of its incoming and outgoing weights is motivated by our analysis of the gradient flow dynamics.
+</p>
+
+<p>
+We use an example to illustrate the training mechanism of the NP algorithm. We aim to learn the target function $$
+f(\mathbf{x}) = 2\sigma(\sigma(2x_1+x_3)-\sigma(x_3-x_2)) - \sigma(\sigma(2x_2+x_4)+\sigma(x_4+x_3))$$,
+defined over the binary hypercube $$\{\pm 1\}^{20}$$, where $$\sigma(x)=\max(x,0)$$ is the ReLU activation and $$x_i$$ denotes the $$i$$th coordinate of $$\mathbf{x}\in\mathbb{R}^{20}$$. We use a three-layer neural network with ReLU activation function, and train it on a dataset of 1000 samples drawn uniformly at random from the hypercube.
+</p>
+
+<p>
+The NP algorithm recovers $$f(\mathbf{x})$$ in five iterations, and the video below depicts the entire training process. For each iteration, the network architecture is shown, where dashed circles and arrows indicate neurons and weights added in the current iteration, while solid elements represent those from previous iterations. In the center, the evolution of the weights is depicted. On the right, we plot the evolution of the learned function compared to the ground truth. To do that, we plot the value of the functions at each vertex of the binary hypercube, ordered lexicographically from $$(1, 1, \cdots, 1, 1), (1, 1, \cdots, 1, −1)$$ to $$(−1, −1, \cdots, −1, −1)$$. So, inflection points in the ground truth occur only if $$x_1,x_2,x_3,$$ or $$x_4$$ change.
+</p>
+
+</td>
+</tr>
+</table>
+</body>
+</html>
