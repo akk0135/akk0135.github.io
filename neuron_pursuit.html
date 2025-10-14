@@ -52,8 +52,7 @@ The NP algorithm begins with a neural network containing one neuron in every lay
 </p>
 
 <p>
-We use an example to illustrate the training mechanism of the NP algorithm. We aim to learn the target function $
-f(\mathbf{x}) = 2\sigma(\sigma(2x_1+x_3)-\sigma(x_3-x_2)) - \sigma(\sigma(2x_2+x_4)+\sigma(x_4+x_3))$,
+We use an example to illustrate the training mechanism of the NP algorithm. We aim to learn the target function \(f(\mathbf{x}) = 2\sigma(\sigma(2x_1+x_3)-\sigma(x_3-x_2)) - \sigma(\sigma(2x_2+x_4)+\sigma(x_4+x_3))\),
 defined over the binary hypercube $\{\pm 1\}^{20}$, where $\sigma(x)=\max(x,0)$ is the ReLU activation and $x_i$ denotes the $i$th coordinate of $\mathbf{x}\in\mathbb{R}^{20}$. We use a three-layer neural network with ReLU activation function, and train it on a dataset of 1000 samples drawn uniformly at random from the hypercube.
 </p>
 
